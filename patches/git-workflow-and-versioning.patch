@@ -1,0 +1,28 @@
+--- a/skills/git-workflow-and-versioning/SKILL.md
++++ b/skills/git-workflow-and-versioning/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: git-workflow-and-versioning
+-description: Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, splitting uncommitted work in a messy working tree into clean atomic commits, opening or reviewing a pull request (PR), pushing to a remote, or when you need to organize work across multiple parallel streams. Use when cutting a release, choosing a semantic version bump, tagging, or writing a changelog.
++description: Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, splitting uncommitted work in a messy working tree into clean atomic commits, opening or reviewing a pull request (PR), pushing to a remote, or when you need to organize work across multiple parallel streams. Use when cutting a release, choosing a semantic version bump, tagging, or writing a changelog. Also fires on `/commit`.
+ ---
+ 
+ # Git Workflow and Versioning
+@@ -353,3 +353,17 @@
+ - [ ] The version bump matches the change: breaking → major, additive → minor, fix → patch
+ - [ ] The release is tagged, and the version is derived from the tag, not hand-edited out of sync
+ - [ ] The changelog has a curated, human-readable entry grouped by impact for this version
++
++## Local adaptation (this box: jj-first quick commit)
++
++Also fires on `/commit` (stage and commit, no push).
++
++1. Check VCS: `jj status` first, else `git status`. Neither? Say so, stop.
++2. Stage: jj — nothing to stage (changes already in `@`).
++   git — `git add -A`.
++3. Message: match repo convention (`feat:`, `fix:`, `docs:`). One line. Say
++   what bug, not "fix bug". Fixup? jj: `jj describe -m "fixup <target>"`
++   or `jj squash --into <target>`. git: `git commit --fixup=<target>`.
++4. Commit: jj — `jj commit` (or `jj squash --into <target>`).
++   git — `git commit -m "<message>"`.
++5. Report: what got committed, message, whether fixup.

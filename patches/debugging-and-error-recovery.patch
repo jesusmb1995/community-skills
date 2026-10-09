@@ -1,0 +1,26 @@
+--- a/skills/debugging-and-error-recovery/SKILL.md
++++ b/skills/debugging-and-error-recovery/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: debugging-and-error-recovery
+-description: Guides systematic root-cause debugging. Use when tests fail, builds break, something that worked yesterday broke, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need to figure out what broke and why — a systematic approach to finding and fixing the root cause rather than guessing.
++description: Guides systematic root-cause debugging. Use when tests fail, builds break, something that worked yesterday broke, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need to figure out what broke and why — a systematic approach to finding and fixing the root cause rather than guessing. Also fires on `/investigate`.
+ ---
+ 
+ # Debugging and Error Recovery
+@@ -298,3 +298,15 @@
+ - [ ] All existing tests pass
+ - [ ] Build succeeds
+ - [ ] The original bug scenario is verified end-to-end
++
++## Local adaptation (this box: findings file)
++
++Also fires on `/investigate <question> [output file]`.
++
++Go deep on one question, then leave the findings in a file: default
++`$AGENT_TMP/investigate-<slug>.md` (user path or shared doc when asked).
++Structure: scope (what is in/out, one or two lines), evidence per
++hypothesis, verdict, open questions. Reply with a short verdict summary +
++file path; detail lives in the file. Analysis only — no code changes,
++propose next steps instead. Evidence before synthesis: every claim points
++at something inspected, never a guess.

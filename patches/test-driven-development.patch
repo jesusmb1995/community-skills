@@ -1,0 +1,39 @@
+--- a/skills/test-driven-development/SKILL.md
++++ b/skills/test-driven-development/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: test-driven-development
+-description: Drives development with tests using the red-green-refactor loop. Use when implementing any logic, fixing any bug, or changing any behavior. Use when you need to prove that code works, when a bug report arrives, or when you're about to modify existing functionality.
++description: Drives development with tests using the red-green-refactor loop. Use when implementing any logic, fixing any bug, or changing any behavior. Use when you need to prove that code works, when a bug report arrives, or when you're about to modify existing functionality. Also fires on `/tdd`.
+ ---
+ 
+ # Test-Driven Development
+@@ -396,3 +396,28 @@
+ - [ ] Coverage hasn't decreased (if tracked)
+ 
+ **Note:** Run each test command after a change that could affect the result. After a clean run, don't repeat the same command unless the code has changed since — re-running on unchanged code adds no confidence.
++
++## Local adaptation (this box: jj/stg, quick triggers)
++
++This skill also fires on `/tdd`, "follow TDD" and "test first".
++
++Red-seam proof when a fix already exists in the working tree (e.g. asked to
++"follow TDD" mid-task, or local changes for the bug already exist):
++`git stash push -k -- <production files>` to temporarily drop ONLY the
++production fix while keeping the new test, re-run the test, observe
++failure, then `git stash pop` and re-run to observe pass. Under stg the
++equivalent is refreshing/popping the fix patch while the test patch stays
++pushed. Skip only when no fix exists yet, or when the test fails to compile
++against the unfixed tree (the compile error itself is the demonstrated
++failure — say so explicitly).
++
++Additional rules for this box:
++- One bug = one new dedicated test (or small cluster). Never piggy-back
++  the repro inside an existing scenario test.
++- Do not change the public API just to make the test expressible; put new
++  state on the existing data type instead.
++- No production code first unless no test harness exists; then create a
++  minimal repro script or document the exact manual repro before fixing.
++- Keep tests focused on behavior, not implementation details.
++- Run the focused test first, then broader relevant tests if risk warrants.
++  Always report the failure observed before the fix and the pass after.

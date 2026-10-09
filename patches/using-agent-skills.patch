@@ -1,0 +1,12 @@
+--- a/skills/using-agent-skills/SKILL.md
++++ b/skills/using-agent-skills/SKILL.md
+@@ -190,3 +190,9 @@
+ | Ship | documentation-and-adrs | Document the why, not just the what |
+ | Ship | observability-and-instrumentation | Structured logs, RED metrics, traces, symptom-based alerts |
+ | Ship | shipping-and-launch | Pre-launch checklist, monitoring, rollback plan |
++
++## Local adaptation (this box: local skill store)
++
++The routing tree above only lists upstream skills. The deployed skills
++directory carries more skills unknown to it. After phase routing, list
++`~/.agents/skills/` and pick the closest match for the task at hand.
